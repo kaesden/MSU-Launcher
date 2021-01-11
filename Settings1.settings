@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MSU_Launcher" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="MSUPathSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\MSU</Value>
+    </Setting>
+    <Setting Name="SNES9xPathSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Brian\Documents\SNES\EMULATOR\snes9x.exe</Value>
+    </Setting>
+    <Setting Name="LiveSplitPathSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Brian\Desktop\livesplit\rando.lsl</Value>
+    </Setting>
+    <Setting Name="LiveSplitEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="EmoTrackerPathSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files (x86)\EmoTracker\EmoTracker.exe</Value>
+    </Setting>
+    <Setting Name="EmoTrackerEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DownloadsPathSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%userprofile%\downloads</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
