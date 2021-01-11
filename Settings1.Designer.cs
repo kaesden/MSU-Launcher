@@ -106,5 +106,17 @@ namespace MSU_Launcher {
                 this["DownloadsPathSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OverwriteSetting {
+            get {
+                return ((bool)(this["OverwriteSetting"]));
+            }
+            set {
+                this["OverwriteSetting"] = value;
+            }
+        }
     }
 }

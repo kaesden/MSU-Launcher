@@ -52,6 +52,8 @@ namespace MSU_Launcher
             this.lstboxSFC = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnLaunch = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.checkboxOverwrite = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +64,7 @@ namespace MSU_Launcher
             this.lstboxMSU.Name = "lstboxMSU";
             this.lstboxMSU.Size = new System.Drawing.Size(82, 160);
             this.lstboxMSU.TabIndex = 0;
+            this.lstboxMSU.SelectedValueChanged += new System.EventHandler(this.lstboxMSU_SelectedValueChanged);
             // 
             // label1
             // 
@@ -237,6 +240,7 @@ namespace MSU_Launcher
             this.lstboxSFC.Name = "lstboxSFC";
             this.lstboxSFC.Size = new System.Drawing.Size(489, 160);
             this.lstboxSFC.TabIndex = 19;
+            this.lstboxSFC.SelectedValueChanged += new System.EventHandler(this.lstboxSFC_SelectedValueChanged);
             // 
             // label5
             // 
@@ -254,15 +258,37 @@ namespace MSU_Launcher
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(133, 37);
             this.btnLaunch.TabIndex = 21;
-            this.btnLaunch.Text = "Launch Game";
+            this.btnLaunch.Text = "Launch &Game";
             this.btnLaunch.UseVisualStyleBackColor = true;
             this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(422, 331);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 22;
+            this.btnRefresh.Text = "&Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // checkboxOverwrite
+            // 
+            this.checkboxOverwrite.AutoSize = true;
+            this.checkboxOverwrite.Location = new System.Drawing.Point(195, 141);
+            this.checkboxOverwrite.Name = "checkboxOverwrite";
+            this.checkboxOverwrite.Size = new System.Drawing.Size(154, 17);
+            this.checkboxOverwrite.TabIndex = 23;
+            this.checkboxOverwrite.Text = "Overwrite existing game file";
+            this.checkboxOverwrite.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 373);
+            this.Controls.Add(this.checkboxOverwrite);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnLaunch);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lstboxSFC);
@@ -317,6 +343,8 @@ namespace MSU_Launcher
         private System.Windows.Forms.Button btnBrowseDownloads;
         private System.Windows.Forms.TextBox txtDownloadsPath;
         private System.Windows.Forms.Button btnLaunch;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.CheckBox checkboxOverwrite;
     }
 }
 

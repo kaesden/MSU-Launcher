@@ -16,6 +16,7 @@ namespace MSU_Launcher
     {
         string[] msudirs;
         string[] sfcfiles;
+        List<string> sfclist = new List<string>();
 
         public Form1()
         {
@@ -36,11 +37,8 @@ namespace MSU_Launcher
             checkBoxTimer.Checked = Settings1.Default.LiveSplitEnabled;
             checkBoxTracker.Checked = Settings1.Default.EmoTrackerEnabled;
             txtDownloadsPath.Text = Settings1.Default.DownloadsPathSetting;
-            if (ValidatePaths())
-            {
-                LoadMSUList();
-                LoadSFCList();
-            }
+            checkboxOverwrite.Checked = Settings1.Default.OverwriteSetting;
+            ValidatePaths();
 
         }
 
@@ -57,8 +55,17 @@ namespace MSU_Launcher
 
         void LoadSFCList()
         {
+            var allfiles = new List<string>(Directory.GetFiles(txtDownloadsPath.Text));
+            sfclist.Clear();
             sfcfiles = null;
-            sfcfiles = Directory.GetFiles(txtDownloadsPath.Text);
+            foreach(string file in allfiles)
+            {
+                if (Path.GetExtension(file) == ".sfc")
+                {
+                    sfclist.Add(file);
+                }
+            }
+            sfcfiles = sfclist.ToArray();
             lstboxSFC.Items.Clear();
             foreach (string sfcfile in sfcfiles)
             {
@@ -67,7 +74,6 @@ namespace MSU_Launcher
                     FileInfo fi = new FileInfo(sfcfile);
                     lstboxSFC.Items.Add(Path.GetFileName(sfcfile) + " / " + fi.CreationTime);
                 }
-                //lstboxSFC.
             }
 
         }
@@ -190,14 +196,17 @@ namespace MSU_Launcher
             }
             else
             {
-                if (lstboxSFC.Items.Count == 0)
+                if(lstboxSFC.Items.Count == 0)
                     LoadSFCList();
             }
 
             if (isValid)
             {
                 errorProvider.Clear();
-                btnLaunch.Enabled = true;
+                if (lstboxMSU.SelectedIndex >= 0 && lstboxSFC.SelectedIndex >= 0)
+                    btnLaunch.Enabled = true;
+                else
+                    btnLaunch.Enabled = false;
             }
             else
             {
@@ -275,6 +284,7 @@ namespace MSU_Launcher
             Settings1.Default.EmoTrackerEnabled = checkBoxTracker.Checked;
             Settings1.Default.EmoTrackerPathSetting = txtEmoTrackerPath.Text;
             Settings1.Default.DownloadsPathSetting = txtDownloadsPath.Text;
+            Settings1.Default.OverwriteSetting = checkboxOverwrite.Checked;
             Settings1.Default.Save();
         }
 
@@ -309,7 +319,60 @@ namespace MSU_Launcher
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
+            //MSU Folder name
+            string MSUPath = msudirs[lstboxMSU.SelectedIndex];
+            string SFCPath;
+            string SFCDestination;
+            string[] MSUFileName;
+            MSUFileName = Directory.GetFiles(MSUPath, "*.msu", SearchOption.TopDirectoryOnly);
+            if(MSUFileName.Length != 1)
+            {
+                MessageBox.Show("MSU not created properly. Make sure the blank .msu file exists and there is not more than one of them");
+                return;
+            }
+            MSUFileName[0] = Path.GetFileNameWithoutExtension(MSUFileName[0]) + ".sfc";
+            SFCPath = sfcfiles[lstboxSFC.SelectedIndex];
+            SFCDestination = MSUPath + "\\" + MSUFileName[0];
+            MessageBox.Show(SFCDestination);
+            MessageBox.Show(SFCPath);
+            
+            if (File.Exists(SFCDestination) && checkboxOverwrite.Checked == false)
+            {
+                if (MessageBox.Show("Game file already exists in specified MSU! OK to ovewrite?", "warning", MessageBoxButtons.YesNo) == DialogResult.No)
+                    return;
+            }
+            if (checkBoxTimer.Checked)
+            {
+                Process.Start(txtLiveSplitPath.Text);
+            }
 
+            if (checkBoxTracker.Checked)
+            {
+                Process.Start(txtEmoTrackerPath.Text);
+            }
+            File.Delete(SFCDestination);
+            File.Move(SFCPath, SFCDestination);
+
+            Process.Start(txtSNES9xPath.Text, SFCDestination);
+            ValidatePaths();
+
+        }
+
+        private void lstboxMSU_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ValidatePaths();
+        }
+
+        private void lstboxSFC_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ValidatePaths();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ClearMSUList();
+            ClearSFCList();
+            ValidatePaths();
         }
     }
 }

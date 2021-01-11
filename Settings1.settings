@@ -23,5 +23,8 @@
     <Setting Name="DownloadsPathSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">%userprofile%\downloads</Value>
     </Setting>
+    <Setting Name="OverwriteSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
