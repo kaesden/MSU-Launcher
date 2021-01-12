@@ -5,25 +5,31 @@
     <Setting Name="MSUPathSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\MSU</Value>
     </Setting>
-    <Setting Name="SNES9xPathSetting" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Brian\Documents\SNES\EMULATOR\snes9x.exe</Value>
+    <Setting Name="QUsb2SnesPathSetting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\ProgramData\BerserkerMultiWorld\QUsb2Snes\QUsb2Snes.exe</Value>
     </Setting>
     <Setting Name="LiveSplitPathSetting" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Brian\Desktop\livesplit\rando.lsl</Value>
+      <Value Profile="(Default)">C:\livesplit\rando.lsl</Value>
     </Setting>
-    <Setting Name="LiveSplitEnabled" Type="System.Boolean" Scope="User">
+    <Setting Name="LiveSplitEnabledSetting" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="EmoTrackerPathSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\EmoTracker\EmoTracker.exe</Value>
     </Setting>
-    <Setting Name="EmoTrackerEnabled" Type="System.Boolean" Scope="User">
+    <Setting Name="EmoTrackerEnabledSetting" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DownloadsPathSetting" Type="System.String" Scope="User">
       <Value Profile="(Default)">%userprofile%\downloads</Value>
     </Setting>
     <Setting Name="OverwriteSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="RandomMSUSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="QUsb2SnesEnabledSetting" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

@@ -37,19 +37,19 @@ namespace MSU_Launcher {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Brian\\Documents\\SNES\\EMULATOR\\snes9x.exe")]
-        public string SNES9xPathSetting {
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\ProgramData\\BerserkerMultiWorld\\QUsb2Snes\\QUsb2Snes.exe")]
+        public string QUsb2SnesPathSetting {
             get {
-                return ((string)(this["SNES9xPathSetting"]));
+                return ((string)(this["QUsb2SnesPathSetting"]));
             }
             set {
-                this["SNES9xPathSetting"] = value;
+                this["QUsb2SnesPathSetting"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Brian\\Desktop\\livesplit\\rando.lsl")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\livesplit\\rando.lsl")]
         public string LiveSplitPathSetting {
             get {
                 return ((string)(this["LiveSplitPathSetting"]));
@@ -62,12 +62,12 @@ namespace MSU_Launcher {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool LiveSplitEnabled {
+        public bool LiveSplitEnabledSetting {
             get {
-                return ((bool)(this["LiveSplitEnabled"]));
+                return ((bool)(this["LiveSplitEnabledSetting"]));
             }
             set {
-                this["LiveSplitEnabled"] = value;
+                this["LiveSplitEnabledSetting"] = value;
             }
         }
         
@@ -86,12 +86,12 @@ namespace MSU_Launcher {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool EmoTrackerEnabled {
+        public bool EmoTrackerEnabledSetting {
             get {
-                return ((bool)(this["EmoTrackerEnabled"]));
+                return ((bool)(this["EmoTrackerEnabledSetting"]));
             }
             set {
-                this["EmoTrackerEnabled"] = value;
+                this["EmoTrackerEnabledSetting"] = value;
             }
         }
         
@@ -116,6 +116,30 @@ namespace MSU_Launcher {
             }
             set {
                 this["OverwriteSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RandomMSUSetting {
+            get {
+                return ((bool)(this["RandomMSUSetting"]));
+            }
+            set {
+                this["RandomMSUSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool QUsb2SnesEnabledSetting {
+            get {
+                return ((bool)(this["QUsb2SnesEnabledSetting"]));
+            }
+            set {
+                this["QUsb2SnesEnabledSetting"] = value;
             }
         }
     }

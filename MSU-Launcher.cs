@@ -12,13 +12,13 @@ using System.Diagnostics;
 
 namespace MSU_Launcher
 {
-    public partial class Form1 : Form
+    public partial class MSULauncherForm : Form
     {
         string[] msudirs;
         string[] sfcfiles;
         List<string> sfclist = new List<string>();
 
-        public Form1()
+        public MSULauncherForm()
         {
             InitializeComponent();
         }
@@ -32,12 +32,14 @@ namespace MSU_Launcher
         {
             txtMSUPath.Text = Settings1.Default.MSUPathSetting;
             txtLiveSplitPath.Text = Settings1.Default.LiveSplitPathSetting;
-            txtSNES9xPath.Text = Settings1.Default.SNES9xPathSetting;
+            txtQUSB2SNESPath.Text = Settings1.Default.QUsb2SnesPathSetting;
             txtEmoTrackerPath.Text = Settings1.Default.EmoTrackerPathSetting;
-            checkBoxTimer.Checked = Settings1.Default.LiveSplitEnabled;
-            checkBoxTracker.Checked = Settings1.Default.EmoTrackerEnabled;
+            checkBoxTimer.Checked = Settings1.Default.LiveSplitEnabledSetting;
+            checkBoxTracker.Checked = Settings1.Default.EmoTrackerEnabledSetting;
             txtDownloadsPath.Text = Settings1.Default.DownloadsPathSetting;
             checkboxOverwrite.Checked = Settings1.Default.OverwriteSetting;
+            checkboxRandomMSU.Checked = Settings1.Default.RandomMSUSetting;
+            checkboxQUsb2SnesPath.Checked = Settings1.Default.QUsb2SnesEnabledSetting;
             ValidatePaths();
 
         }
@@ -55,7 +57,7 @@ namespace MSU_Launcher
 
         void LoadSFCList()
         {
-            var allfiles = new List<string>(Directory.GetFiles(txtDownloadsPath.Text));
+            var allfiles = new List<string>(Directory.GetFiles(txtDownloadsPath.Text,"*.sfc",SearchOption.TopDirectoryOnly));
             sfclist.Clear();
             sfcfiles = null;
             foreach(string file in allfiles)
@@ -88,11 +90,6 @@ namespace MSU_Launcher
         {
             sfcfiles = null;
             lstboxSFC.Items.Clear();
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
 
@@ -169,20 +166,20 @@ namespace MSU_Launcher
                 }
             }
 
-            //check if snes9x path is valid
-            if (File.Exists(txtSNES9xPath.Text))
+            //check if QUsb2Snes path is valid
+            if (File.Exists(txtQUSB2SNESPath.Text))
             {
-                FileInfo fi = new FileInfo(txtSNES9xPath.Text);
-                //selected file should be snes9x.exe
-                if (fi.Name.ToLower() != "snes9x.exe")
+                FileInfo fi = new FileInfo(txtQUSB2SNESPath.Text);
+                //selected file should be qusb2snes.exe
+                if (fi.Name.ToLower() != "qusb2snes.exe")
                 {
-                    errorProvider.SetError(txtSNES9xPath, "Please select snes9x emulator file");
+                    errorProvider.SetError(txtQUSB2SNESPath, "Please select qusb2snes.exe file");
                     isValid = false;
                 }
             }
             else
             {
-                errorProvider.SetError(txtSNES9xPath, "SNES9X not found!");
+                errorProvider.SetError(txtQUSB2SNESPath, "QUsb2Snes.exe not found!");
                 isValid = false;
             }
 
@@ -203,7 +200,7 @@ namespace MSU_Launcher
             if (isValid)
             {
                 errorProvider.Clear();
-                if (lstboxMSU.SelectedIndex >= 0 && lstboxSFC.SelectedIndex >= 0)
+                if ((lstboxMSU.SelectedIndex >= 0 || checkboxRandomMSU.Checked) && lstboxSFC.SelectedIndex >= 0)
                     btnLaunch.Enabled = true;
                 else
                     btnLaunch.Enabled = false;
@@ -232,11 +229,11 @@ namespace MSU_Launcher
         private void btnBrowseSNES9X_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
-            fd.InitialDirectory = Path.GetDirectoryName(txtSNES9xPath.Text);
-            fd.Filter = "SNES9X Executable|snes9x.exe";
+            fd.InitialDirectory = Path.GetDirectoryName(txtQUSB2SNESPath.Text);
+            fd.Filter = "QUsb2Snes Executable|qusb2snes.exe";
             if (fd.ShowDialog() == DialogResult.OK)
             {
-                txtSNES9xPath.Text = fd.FileName;
+                txtQUSB2SNESPath.Text = fd.FileName;
             }
             ValidatePaths();
         }
@@ -278,13 +275,15 @@ namespace MSU_Launcher
         private void btnSaveSettings_Click(object sender, EventArgs e)
         {
             Settings1.Default.MSUPathSetting = txtMSUPath.Text;
-            Settings1.Default.SNES9xPathSetting = txtSNES9xPath.Text;
-            Settings1.Default.LiveSplitEnabled = checkBoxTimer.Checked;
+            Settings1.Default.QUsb2SnesPathSetting = txtQUSB2SNESPath.Text;
+            Settings1.Default.LiveSplitEnabledSetting = checkBoxTimer.Checked;
             Settings1.Default.LiveSplitPathSetting = txtLiveSplitPath.Text;
-            Settings1.Default.EmoTrackerEnabled = checkBoxTracker.Checked;
+            Settings1.Default.EmoTrackerEnabledSetting = checkBoxTracker.Checked;
             Settings1.Default.EmoTrackerPathSetting = txtEmoTrackerPath.Text;
             Settings1.Default.DownloadsPathSetting = txtDownloadsPath.Text;
             Settings1.Default.OverwriteSetting = checkboxOverwrite.Checked;
+            Settings1.Default.RandomMSUSetting = checkboxRandomMSU.Checked;
+            Settings1.Default.QUsb2SnesEnabledSetting = checkboxQUsb2SnesPath.Checked;
             Settings1.Default.Save();
         }
 
@@ -294,7 +293,7 @@ namespace MSU_Launcher
                 LoadMSUList();
         }
 
-        private void txtSNES9xPath_Leave(object sender, EventArgs e)
+        private void txtQUsb2SnesPath_Leave(object sender, EventArgs e)
         {
             ValidatePaths();
         }
@@ -319,8 +318,19 @@ namespace MSU_Launcher
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
+
             //MSU Folder name
-            string MSUPath = msudirs[lstboxMSU.SelectedIndex];
+            string MSUPath;
+            if (checkboxRandomMSU.Checked)
+            {
+                Random rnd = new Random();
+                int r = rnd.Next(0, lstboxMSU.Items.Count);
+                MSUPath = msudirs[r];
+            }
+            else
+            {
+                MSUPath = msudirs[lstboxMSU.SelectedIndex];
+            }
             string SFCPath;
             string SFCDestination;
             string[] MSUFileName;
@@ -333,8 +343,6 @@ namespace MSU_Launcher
             MSUFileName[0] = Path.GetFileNameWithoutExtension(MSUFileName[0]) + ".sfc";
             SFCPath = sfcfiles[lstboxSFC.SelectedIndex];
             SFCDestination = MSUPath + "\\" + MSUFileName[0];
-            MessageBox.Show(SFCDestination);
-            MessageBox.Show(SFCPath);
             
             if (File.Exists(SFCDestination) && checkboxOverwrite.Checked == false)
             {
@@ -350,10 +358,23 @@ namespace MSU_Launcher
             {
                 Process.Start(txtEmoTrackerPath.Text);
             }
+
+            if (checkboxQUsb2SnesPath.Checked)
+            {
+                Process[] p = Process.GetProcessesByName("QUsb2Snes");
+                MessageBox.Show(p.Length.ToString());
+                if (p.Length == 0)
+                {
+                    Process.Start(txtQUSB2SNESPath.Text);
+                }
+            }
+
             File.Delete(SFCDestination);
             File.Move(SFCPath, SFCDestination);
 
-            Process.Start(txtSNES9xPath.Text, SFCDestination);
+            Process.Start(SFCDestination);
+            ClearMSUList();
+            ClearSFCList();
             ValidatePaths();
 
         }
@@ -373,6 +394,25 @@ namespace MSU_Launcher
             ClearMSUList();
             ClearSFCList();
             ValidatePaths();
+        }
+
+        private void checkboxRandomMSU_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkboxRandomMSU.Checked && lstboxMSU.Items.Count > 0)
+            {
+                lstboxMSU.Enabled = false;
+            }
+            else
+            {
+                lstboxMSU.Enabled = true;
+            }
+            ValidatePaths();
+        }
+
+        private void checkboxQUsb2SnesPath_CheckedChanged(object sender, EventArgs e)
+        {
+            txtQUSB2SNESPath.Enabled = checkboxQUsb2SnesPath.Checked;
+            btnBrowseQusb2Snes.Enabled = checkboxQUsb2SnesPath.Checked;
         }
     }
 }
