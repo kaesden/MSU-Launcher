@@ -51,11 +51,11 @@ namespace MSU_Launcher
             this.txtDownloadsPath = new System.Windows.Forms.TextBox();
             this.lstboxSFC = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnLaunch = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.checkboxOverwrite = new System.Windows.Forms.CheckBox();
             this.checkboxRandomMSU = new System.Windows.Forms.CheckBox();
             this.checkboxQUsb2SnesPath = new System.Windows.Forms.CheckBox();
+            this.btnLaunch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -243,17 +243,6 @@ namespace MSU_Launcher
             this.label5.TabIndex = 16;
             this.label5.Text = "Game Files Found";
             // 
-            // btnLaunch
-            // 
-            this.btnLaunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaunch.Location = new System.Drawing.Point(111, 324);
-            this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(133, 37);
-            this.btnLaunch.TabIndex = 21;
-            this.btnLaunch.Text = "Launch &Game";
-            this.btnLaunch.UseVisualStyleBackColor = true;
-            this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
-            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(422, 331);
@@ -297,6 +286,20 @@ namespace MSU_Launcher
             this.checkboxQUsb2SnesPath.Text = "QUsb2Snes Path";
             this.checkboxQUsb2SnesPath.UseVisualStyleBackColor = true;
             this.checkboxQUsb2SnesPath.CheckedChanged += new System.EventHandler(this.checkboxQUsb2SnesPath_CheckedChanged);
+            // 
+            // btnLaunch
+            // 
+            this.btnLaunch.BackgroundImage = global::MSU_Launcher.Properties.Resources.triforce_wide;
+            this.btnLaunch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLaunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLaunch.Location = new System.Drawing.Point(111, 324);
+            this.btnLaunch.Name = "btnLaunch";
+            this.btnLaunch.Size = new System.Drawing.Size(140, 37);
+            this.btnLaunch.TabIndex = 21;
+            this.btnLaunch.Text = "Launch &Game";
+            this.btnLaunch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLaunch.UseVisualStyleBackColor = true;
+            this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
             // 
             // MSULauncherForm
             // 
