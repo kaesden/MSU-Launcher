@@ -362,7 +362,6 @@ namespace MSU_Launcher
             if (checkboxQUsb2SnesPath.Checked)
             {
                 Process[] p = Process.GetProcessesByName("QUsb2Snes");
-                MessageBox.Show(p.Length.ToString());
                 if (p.Length == 0)
                 {
                     Process.Start(txtQUSB2SNESPath.Text);
