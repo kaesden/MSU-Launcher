@@ -30,6 +30,13 @@ namespace MSU_Launcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            LoadSettings();
+            ValidatePaths();
+
+        }
+
+        private void LoadSettings()
+        {
             txtMSUPath.Text = Settings1.Default.MSUPathSetting;
             txtLiveSplitPath.Text = Settings1.Default.LiveSplitPathSetting;
             txtQUSB2SNESPath.Text = Settings1.Default.QUsb2SnesPathSetting;
@@ -40,8 +47,6 @@ namespace MSU_Launcher
             checkboxOverwrite.Checked = Settings1.Default.OverwriteSetting;
             checkboxRandomMSU.Checked = Settings1.Default.RandomMSUSetting;
             checkboxQUsb2SnesPath.Checked = Settings1.Default.QUsb2SnesEnabledSetting;
-            ValidatePaths();
-
         }
 
         void LoadMSUList()
@@ -57,27 +62,18 @@ namespace MSU_Launcher
 
         void LoadSFCList()
         {
-            var allfiles = new List<string>(Directory.GetFiles(txtDownloadsPath.Text,"*.sfc",SearchOption.TopDirectoryOnly));
-            sfclist.Clear();
             sfcfiles = null;
-            foreach(string file in allfiles)
-            {
-                if (Path.GetExtension(file) == ".sfc")
-                {
-                    sfclist.Add(file);
-                }
-            }
-            sfcfiles = sfclist.ToArray();
+            sfcfiles = Directory.GetFiles(txtDownloadsPath.Text, "*.sfc", SearchOption.TopDirectoryOnly);
             lstboxSFC.Items.Clear();
             foreach (string sfcfile in sfcfiles)
             {
-                if(Path.GetExtension(sfcfile) == ".sfc")
-                {
-                    FileInfo fi = new FileInfo(sfcfile);
-                    lstboxSFC.Items.Add(Path.GetFileName(sfcfile) + " / " + fi.CreationTime);
-                }
+                FileInfo fi = new FileInfo(sfcfile);
+                lstboxSFC.Items.Add(Path.GetFileName(sfcfile) + " / " + fi.CreationTime);
             }
-
+            if (lstboxSFC.Items.Count == 1)
+            {
+                lstboxSFC.SelectedIndex = 0;
+            }
         }
 
         void ClearMSUList()
@@ -273,6 +269,11 @@ namespace MSU_Launcher
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+        }
+
+        private void SaveSettings()
         {
             Settings1.Default.MSUPathSetting = txtMSUPath.Text;
             Settings1.Default.QUsb2SnesPathSetting = txtQUSB2SNESPath.Text;
