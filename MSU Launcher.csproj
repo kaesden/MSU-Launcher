@@ -26,7 +26,7 @@
     <ProductName>MSU Launcher</ProductName>
     <PublisherName>Kaesden</PublisherName>
     <ApplicationRevision>2</ApplicationRevision>
-    <ApplicationVersion>1.0.11321.%2a</ApplicationVersion>
+    <ApplicationVersion>1.1.11521.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -67,7 +67,10 @@
     <ApplicationIcon>MSU_Launcher_Logo-Large.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>MSU Launcher_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

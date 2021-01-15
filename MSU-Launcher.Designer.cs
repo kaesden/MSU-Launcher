@@ -61,10 +61,13 @@ namespace MSU_Launcher
             // 
             // lstboxMSU
             // 
+            this.lstboxMSU.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstboxMSU.FormattingEnabled = true;
             this.lstboxMSU.Location = new System.Drawing.Point(12, 158);
             this.lstboxMSU.Name = "lstboxMSU";
-            this.lstboxMSU.Size = new System.Drawing.Size(82, 160);
+            this.lstboxMSU.Size = new System.Drawing.Size(80, 147);
             this.lstboxMSU.TabIndex = 18;
             this.lstboxMSU.SelectedValueChanged += new System.EventHandler(this.lstboxMSU_SelectedValueChanged);
             // 
@@ -88,25 +91,31 @@ namespace MSU_Launcher
             // 
             // txtMSUPath
             // 
+            this.txtMSUPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMSUPath.Location = new System.Drawing.Point(127, 11);
             this.txtMSUPath.Name = "txtMSUPath";
-            this.txtMSUPath.Size = new System.Drawing.Size(419, 20);
+            this.txtMSUPath.Size = new System.Drawing.Size(418, 20);
             this.txtMSUPath.TabIndex = 1;
             this.txtMSUPath.Leave += new System.EventHandler(this.txtMSUPath_Leave);
             // 
             // txtQUSB2SNESPath
             // 
+            this.txtQUSB2SNESPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtQUSB2SNESPath.Location = new System.Drawing.Point(127, 64);
             this.txtQUSB2SNESPath.Name = "txtQUSB2SNESPath";
-            this.txtQUSB2SNESPath.Size = new System.Drawing.Size(419, 20);
+            this.txtQUSB2SNESPath.Size = new System.Drawing.Size(418, 20);
             this.txtQUSB2SNESPath.TabIndex = 7;
             this.txtQUSB2SNESPath.Leave += new System.EventHandler(this.txtQUsb2SnesPath_Leave);
             // 
             // txtLiveSplitPath
             // 
+            this.txtLiveSplitPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLiveSplitPath.Location = new System.Drawing.Point(127, 89);
             this.txtLiveSplitPath.Name = "txtLiveSplitPath";
-            this.txtLiveSplitPath.Size = new System.Drawing.Size(419, 20);
+            this.txtLiveSplitPath.Size = new System.Drawing.Size(418, 20);
             this.txtLiveSplitPath.TabIndex = 10;
             this.txtLiveSplitPath.Leave += new System.EventHandler(this.txtLiveSplitPath_Leave);
             // 
@@ -125,9 +134,11 @@ namespace MSU_Launcher
             // 
             // txtEmoTrackerPath
             // 
+            this.txtEmoTrackerPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmoTrackerPath.Location = new System.Drawing.Point(127, 115);
             this.txtEmoTrackerPath.Name = "txtEmoTrackerPath";
-            this.txtEmoTrackerPath.Size = new System.Drawing.Size(419, 20);
+            this.txtEmoTrackerPath.Size = new System.Drawing.Size(418, 20);
             this.txtEmoTrackerPath.TabIndex = 13;
             this.txtEmoTrackerPath.Leave += new System.EventHandler(this.txtEmoTrackerPath_Leave);
             // 
@@ -146,7 +157,8 @@ namespace MSU_Launcher
             // 
             // btnBrowseMSU
             // 
-            this.btnBrowseMSU.Location = new System.Drawing.Point(567, 11);
+            this.btnBrowseMSU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseMSU.Location = new System.Drawing.Point(566, 11);
             this.btnBrowseMSU.Name = "btnBrowseMSU";
             this.btnBrowseMSU.Size = new System.Drawing.Size(22, 20);
             this.btnBrowseMSU.TabIndex = 2;
@@ -156,7 +168,8 @@ namespace MSU_Launcher
             // 
             // btnBrowseQusb2Snes
             // 
-            this.btnBrowseQusb2Snes.Location = new System.Drawing.Point(567, 65);
+            this.btnBrowseQusb2Snes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseQusb2Snes.Location = new System.Drawing.Point(566, 65);
             this.btnBrowseQusb2Snes.Name = "btnBrowseQusb2Snes";
             this.btnBrowseQusb2Snes.Size = new System.Drawing.Size(22, 20);
             this.btnBrowseQusb2Snes.TabIndex = 8;
@@ -166,7 +179,8 @@ namespace MSU_Launcher
             // 
             // btnBrowseLiveSplit
             // 
-            this.btnBrowseLiveSplit.Location = new System.Drawing.Point(567, 91);
+            this.btnBrowseLiveSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseLiveSplit.Location = new System.Drawing.Point(566, 91);
             this.btnBrowseLiveSplit.Name = "btnBrowseLiveSplit";
             this.btnBrowseLiveSplit.Size = new System.Drawing.Size(22, 20);
             this.btnBrowseLiveSplit.TabIndex = 11;
@@ -176,7 +190,8 @@ namespace MSU_Launcher
             // 
             // btnBrowseEmotracker
             // 
-            this.btnBrowseEmotracker.Location = new System.Drawing.Point(567, 117);
+            this.btnBrowseEmotracker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseEmotracker.Location = new System.Drawing.Point(566, 117);
             this.btnBrowseEmotracker.Name = "btnBrowseEmotracker";
             this.btnBrowseEmotracker.Size = new System.Drawing.Size(22, 20);
             this.btnBrowseEmotracker.TabIndex = 14;
@@ -190,7 +205,8 @@ namespace MSU_Launcher
             // 
             // btnSaveSettings
             // 
-            this.btnSaveSettings.Location = new System.Drawing.Point(503, 331);
+            this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveSettings.Location = new System.Drawing.Point(502, 324);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(86, 23);
             this.btnSaveSettings.TabIndex = 23;
@@ -209,7 +225,8 @@ namespace MSU_Launcher
             // 
             // btnBrowseDownloads
             // 
-            this.btnBrowseDownloads.Location = new System.Drawing.Point(567, 38);
+            this.btnBrowseDownloads.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBrowseDownloads.Location = new System.Drawing.Point(566, 38);
             this.btnBrowseDownloads.Name = "btnBrowseDownloads";
             this.btnBrowseDownloads.Size = new System.Drawing.Size(22, 20);
             this.btnBrowseDownloads.TabIndex = 5;
@@ -219,18 +236,22 @@ namespace MSU_Launcher
             // 
             // txtDownloadsPath
             // 
+            this.txtDownloadsPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDownloadsPath.Location = new System.Drawing.Point(127, 38);
             this.txtDownloadsPath.Name = "txtDownloadsPath";
-            this.txtDownloadsPath.Size = new System.Drawing.Size(419, 20);
+            this.txtDownloadsPath.Size = new System.Drawing.Size(418, 20);
             this.txtDownloadsPath.TabIndex = 4;
             this.txtDownloadsPath.Leave += new System.EventHandler(this.txtDownloadsPath_Leave);
             // 
             // lstboxSFC
             // 
+            this.lstboxSFC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstboxSFC.FormattingEnabled = true;
-            this.lstboxSFC.Location = new System.Drawing.Point(100, 158);
+            this.lstboxSFC.Location = new System.Drawing.Point(99, 158);
             this.lstboxSFC.Name = "lstboxSFC";
-            this.lstboxSFC.Size = new System.Drawing.Size(489, 160);
+            this.lstboxSFC.Size = new System.Drawing.Size(489, 147);
             this.lstboxSFC.TabIndex = 19;
             this.lstboxSFC.SelectedValueChanged += new System.EventHandler(this.lstboxSFC_SelectedValueChanged);
             // 
@@ -245,7 +266,8 @@ namespace MSU_Launcher
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(422, 331);
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.Location = new System.Drawing.Point(421, 324);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 22;
@@ -255,8 +277,9 @@ namespace MSU_Launcher
             // 
             // checkboxOverwrite
             // 
+            this.checkboxOverwrite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkboxOverwrite.AutoSize = true;
-            this.checkboxOverwrite.Location = new System.Drawing.Point(435, 141);
+            this.checkboxOverwrite.Location = new System.Drawing.Point(434, 141);
             this.checkboxOverwrite.Name = "checkboxOverwrite";
             this.checkboxOverwrite.Size = new System.Drawing.Size(154, 17);
             this.checkboxOverwrite.TabIndex = 17;
@@ -265,8 +288,9 @@ namespace MSU_Launcher
             // 
             // checkboxRandomMSU
             // 
+            this.checkboxRandomMSU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkboxRandomMSU.AutoSize = true;
-            this.checkboxRandomMSU.Location = new System.Drawing.Point(12, 324);
+            this.checkboxRandomMSU.Location = new System.Drawing.Point(12, 317);
             this.checkboxRandomMSU.Name = "checkboxRandomMSU";
             this.checkboxRandomMSU.Size = new System.Drawing.Size(93, 17);
             this.checkboxRandomMSU.TabIndex = 20;
@@ -289,10 +313,11 @@ namespace MSU_Launcher
             // 
             // btnLaunch
             // 
+            this.btnLaunch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLaunch.BackgroundImage = global::MSU_Launcher.Properties.Resources.triforce_wide;
             this.btnLaunch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLaunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaunch.Location = new System.Drawing.Point(111, 324);
+            this.btnLaunch.Location = new System.Drawing.Point(110, 317);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(140, 37);
             this.btnLaunch.TabIndex = 21;
@@ -305,7 +330,7 @@ namespace MSU_Launcher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 366);
+            this.ClientSize = new System.Drawing.Size(599, 361);
             this.Controls.Add(this.checkboxQUsb2SnesPath);
             this.Controls.Add(this.checkboxRandomMSU);
             this.Controls.Add(this.checkboxOverwrite);
@@ -330,9 +355,9 @@ namespace MSU_Launcher
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lstboxMSU);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(615, 400);
             this.Name = "MSULauncherForm";
             this.Text = "MSU-Launcher";
             this.Load += new System.EventHandler(this.Form1_Load);
