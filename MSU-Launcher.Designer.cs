@@ -56,7 +56,13 @@ namespace MSU_Launcher
             this.checkboxRandomMSU = new System.Windows.Forms.CheckBox();
             this.checkboxQUsb2SnesPath = new System.Windows.Forms.CheckBox();
             this.btnLaunch = new System.Windows.Forms.Button();
+            this.splitContainer = new System.Windows.Forms.SplitContainer();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.Panel1.SuspendLayout();
+            this.splitContainer.Panel2.SuspendLayout();
+            this.splitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstboxMSU
@@ -65,16 +71,16 @@ namespace MSU_Launcher
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstboxMSU.FormattingEnabled = true;
-            this.lstboxMSU.Location = new System.Drawing.Point(12, 158);
+            this.lstboxMSU.Location = new System.Drawing.Point(3, 22);
             this.lstboxMSU.Name = "lstboxMSU";
-            this.lstboxMSU.Size = new System.Drawing.Size(80, 147);
+            this.lstboxMSU.Size = new System.Drawing.Size(90, 134);
             this.lstboxMSU.TabIndex = 18;
             this.lstboxMSU.SelectedValueChanged += new System.EventHandler(this.lstboxMSU_SelectedValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 142);
+            this.label1.Location = new System.Drawing.Point(3, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 15;
@@ -206,7 +212,7 @@ namespace MSU_Launcher
             // btnSaveSettings
             // 
             this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveSettings.Location = new System.Drawing.Point(502, 324);
+            this.btnSaveSettings.Location = new System.Drawing.Point(380, 169);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(86, 23);
             this.btnSaveSettings.TabIndex = 23;
@@ -246,19 +252,20 @@ namespace MSU_Launcher
             // 
             // lstboxSFC
             // 
-            this.lstboxSFC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lstboxSFC.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstboxSFC.FormattingEnabled = true;
-            this.lstboxSFC.Location = new System.Drawing.Point(99, 158);
+            this.lstboxSFC.Location = new System.Drawing.Point(3, 22);
             this.lstboxSFC.Name = "lstboxSFC";
-            this.lstboxSFC.Size = new System.Drawing.Size(489, 147);
+            this.lstboxSFC.Size = new System.Drawing.Size(464, 134);
             this.lstboxSFC.TabIndex = 19;
             this.lstboxSFC.SelectedValueChanged += new System.EventHandler(this.lstboxSFC_SelectedValueChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(97, 142);
+            this.label5.Location = new System.Drawing.Point(3, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 16;
@@ -267,7 +274,7 @@ namespace MSU_Launcher
             // btnRefresh
             // 
             this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRefresh.Location = new System.Drawing.Point(421, 324);
+            this.btnRefresh.Location = new System.Drawing.Point(299, 169);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 22;
@@ -279,7 +286,7 @@ namespace MSU_Launcher
             // 
             this.checkboxOverwrite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkboxOverwrite.AutoSize = true;
-            this.checkboxOverwrite.Location = new System.Drawing.Point(434, 141);
+            this.checkboxOverwrite.Location = new System.Drawing.Point(312, 5);
             this.checkboxOverwrite.Name = "checkboxOverwrite";
             this.checkboxOverwrite.Size = new System.Drawing.Size(154, 17);
             this.checkboxOverwrite.TabIndex = 17;
@@ -290,7 +297,7 @@ namespace MSU_Launcher
             // 
             this.checkboxRandomMSU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkboxRandomMSU.AutoSize = true;
-            this.checkboxRandomMSU.Location = new System.Drawing.Point(12, 317);
+            this.checkboxRandomMSU.Location = new System.Drawing.Point(6, 173);
             this.checkboxRandomMSU.Name = "checkboxRandomMSU";
             this.checkboxRandomMSU.Size = new System.Drawing.Size(93, 17);
             this.checkboxRandomMSU.TabIndex = 20;
@@ -313,11 +320,11 @@ namespace MSU_Launcher
             // 
             // btnLaunch
             // 
-            this.btnLaunch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLaunch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLaunch.BackgroundImage = global::MSU_Launcher.Properties.Resources.triforce_wide;
             this.btnLaunch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLaunch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaunch.Location = new System.Drawing.Point(110, 317);
+            this.btnLaunch.Location = new System.Drawing.Point(6, 162);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(140, 37);
             this.btnLaunch.TabIndex = 21;
@@ -326,22 +333,55 @@ namespace MSU_Launcher
             this.btnLaunch.UseVisualStyleBackColor = true;
             this.btnLaunch.Click += new System.EventHandler(this.btnLaunch_Click);
             // 
+            // splitContainer
+            // 
+            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.splitContainer.Location = new System.Drawing.Point(12, 143);
+            this.splitContainer.Name = "splitContainer";
+            // 
+            // splitContainer.Panel1
+            // 
+            this.splitContainer.Panel1.Controls.Add(this.lstboxMSU);
+            this.splitContainer.Panel1.Controls.Add(this.label1);
+            this.splitContainer.Panel1.Controls.Add(this.checkboxRandomMSU);
+            this.splitContainer.Panel1MinSize = 100;
+            // 
+            // splitContainer.Panel2
+            // 
+            this.splitContainer.Panel2.Controls.Add(this.lstboxSFC);
+            this.splitContainer.Panel2.Controls.Add(this.label5);
+            this.splitContainer.Panel2.Controls.Add(this.btnRefresh);
+            this.splitContainer.Panel2.Controls.Add(this.checkboxOverwrite);
+            this.splitContainer.Panel2.Controls.Add(this.btnLaunch);
+            this.splitContainer.Panel2.Controls.Add(this.btnSaveSettings);
+            this.splitContainer.Panel2MinSize = 335;
+            this.splitContainer.Size = new System.Drawing.Size(576, 206);
+            this.splitContainer.SplitterDistance = 100;
+            this.splitContainer.SplitterWidth = 2;
+            this.splitContainer.TabIndex = 24;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 361);
+            this.splitter1.TabIndex = 25;
+            this.splitter1.TabStop = false;
+            // 
             // MSULauncherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 361);
+            this.Controls.Add(this.splitter1);
+            this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.checkboxQUsb2SnesPath);
-            this.Controls.Add(this.checkboxRandomMSU);
-            this.Controls.Add(this.checkboxOverwrite);
-            this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.btnLaunch);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.lstboxSFC);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnBrowseDownloads);
             this.Controls.Add(this.txtDownloadsPath);
-            this.Controls.Add(this.btnSaveSettings);
             this.Controls.Add(this.btnBrowseEmotracker);
             this.Controls.Add(this.btnBrowseLiveSplit);
             this.Controls.Add(this.btnBrowseQusb2Snes);
@@ -353,8 +393,6 @@ namespace MSU_Launcher
             this.Controls.Add(this.txtQUSB2SNESPath);
             this.Controls.Add(this.txtMSUPath);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lstboxMSU);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(615, 400);
@@ -362,6 +400,12 @@ namespace MSU_Launcher
             this.Text = "MSU-Launcher";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            this.splitContainer.Panel1.ResumeLayout(false);
+            this.splitContainer.Panel1.PerformLayout();
+            this.splitContainer.Panel2.ResumeLayout(false);
+            this.splitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,6 +438,8 @@ namespace MSU_Launcher
         private System.Windows.Forms.CheckBox checkboxOverwrite;
         private System.Windows.Forms.CheckBox checkboxRandomMSU;
         private System.Windows.Forms.CheckBox checkboxQUsb2SnesPath;
+        private System.Windows.Forms.SplitContainer splitContainer;
+        private System.Windows.Forms.Splitter splitter1;
     }
 }
 
