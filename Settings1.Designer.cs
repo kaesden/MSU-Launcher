@@ -142,5 +142,41 @@ namespace MSU_Launcher {
                 this["QUsb2SnesEnabledSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("615")]
+        public int SizeXSetting {
+            get {
+                return ((int)(this["SizeXSetting"]));
+            }
+            set {
+                this["SizeXSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400")]
+        public int SizeYSetting {
+            get {
+                return ((int)(this["SizeYSetting"]));
+            }
+            set {
+                this["SizeYSetting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int SplitDistanceSetting {
+            get {
+                return ((int)(this["SplitDistanceSetting"]));
+            }
+            set {
+                this["SplitDistanceSetting"] = value;
+            }
+        }
     }
 }

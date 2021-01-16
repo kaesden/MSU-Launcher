@@ -32,5 +32,14 @@
     <Setting Name="QUsb2SnesEnabledSetting" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SizeXSetting" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">615</Value>
+    </Setting>
+    <Setting Name="SizeYSetting" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">400</Value>
+    </Setting>
+    <Setting Name="SplitDistanceSetting" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -47,6 +47,8 @@ namespace MSU_Launcher
             checkboxOverwrite.Checked = Settings1.Default.OverwriteSetting;
             checkboxRandomMSU.Checked = Settings1.Default.RandomMSUSetting;
             checkboxQUsb2SnesPath.Checked = Settings1.Default.QUsb2SnesEnabledSetting;
+            this.Size = new Size(Settings1.Default.SizeXSetting, Settings1.Default.SizeYSetting);
+            splitContainer.SplitterDistance = Settings1.Default.SplitDistanceSetting;
         }
 
         void LoadMSUList()
@@ -285,6 +287,9 @@ namespace MSU_Launcher
             Settings1.Default.OverwriteSetting = checkboxOverwrite.Checked;
             Settings1.Default.RandomMSUSetting = checkboxRandomMSU.Checked;
             Settings1.Default.QUsb2SnesEnabledSetting = checkboxQUsb2SnesPath.Checked;
+            Settings1.Default.SizeXSetting = Size.Width;
+            Settings1.Default.SizeYSetting = Size.Height;
+            Settings1.Default.SplitDistanceSetting = splitContainer.SplitterDistance;
             Settings1.Default.Save();
         }
 
