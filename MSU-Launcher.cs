@@ -268,6 +268,7 @@ namespace MSU_Launcher
             {
                 txtDownloadsPath.Text = fbd.SelectedPath;
             }
+            ValidatePaths();
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -357,12 +358,20 @@ namespace MSU_Launcher
             }
             if (checkBoxTimer.Checked)
             {
-                Process.Start(txtLiveSplitPath.Text);
+                Process[] p = Process.GetProcessesByName("livesplit");
+                if (p.Length == 0)
+                {
+                    Process.Start(txtLiveSplitPath.Text);
+                }
             }
 
             if (checkBoxTracker.Checked)
             {
-                Process.Start(txtEmoTrackerPath.Text);
+                Process[] p = Process.GetProcessesByName("emotracker");
+                if (p.Length == 0)
+                {
+                    Process.Start(txtEmoTrackerPath.Text);
+                }
             }
 
             if (checkboxQUsb2SnesPath.Checked)
