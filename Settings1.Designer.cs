@@ -178,5 +178,17 @@ namespace MSU_Launcher {
                 this["SplitDistanceSetting"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ExitOnLaunchSetting {
+            get {
+                return ((bool)(this["ExitOnLaunchSetting"]));
+            }
+            set {
+                this["ExitOnLaunchSetting"] = value;
+            }
+        }
     }
 }

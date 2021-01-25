@@ -49,6 +49,7 @@ namespace MSU_Launcher
             checkboxQUsb2SnesPath.Checked = Settings1.Default.QUsb2SnesEnabledSetting;
             this.Size = new Size(Settings1.Default.SizeXSetting, Settings1.Default.SizeYSetting);
             splitContainer.SplitterDistance = Settings1.Default.SplitDistanceSetting;
+            checkBoxExitAfterLaunch.Checked = Settings1.Default.ExitOnLaunchSetting;
         }
 
         void LoadMSUList()
@@ -291,6 +292,7 @@ namespace MSU_Launcher
             Settings1.Default.SizeXSetting = Size.Width;
             Settings1.Default.SizeYSetting = Size.Height;
             Settings1.Default.SplitDistanceSetting = splitContainer.SplitterDistance;
+            Settings1.Default.ExitOnLaunchSetting = checkBoxExitAfterLaunch.Checked;
             Settings1.Default.Save();
         }
 
@@ -390,7 +392,10 @@ namespace MSU_Launcher
             ClearMSUList();
             ClearSFCList();
             ValidatePaths();
-
+            if (checkBoxExitAfterLaunch.Checked)
+            {
+                Application.Exit();
+            }
         }
 
         private void lstboxMSU_SelectedValueChanged(object sender, EventArgs e)
