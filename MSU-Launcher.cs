@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using Squirrel;
 
 namespace MSU_Launcher
 {
@@ -16,16 +17,26 @@ namespace MSU_Launcher
     {
         string[] msudirs;
         string[] sfcfiles;
-        List<string> sfclist = new List<string>();
 
         public MSULauncherForm()
         {
             InitializeComponent();
+            AddVersionNumber();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AddVersionNumber()
         {
-            MessageBox.Show("hello world");
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            this.Text += $" v.{ versionInfo.FileVersion }";
+        }
+
+        private async Task CheckForUpdates()
+        {
+            using(var manager = UpdateManager.GitHubUpdateManager(@"https://github.com/kaesden/MSU-Launcher"))
+            {
+                await manager.Result.UpdateApp();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -355,7 +366,8 @@ namespace MSU_Launcher
             
             if (File.Exists(SFCDestination) && checkboxOverwrite.Checked == false)
             {
-                if (MessageBox.Show("Game file already exists in specified MSU! OK to ovewrite?", "warning", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show($"Game file already exists {SFCDestination}! Click Yes to replace this file with {SFCPath}. " +
+                    $"Click No to cancel launch(no action will be taken)", "warning", MessageBoxButtons.YesNo,MessageBoxIcon.Warning) == DialogResult.No)
                     return;
             }
             if (checkBoxTimer.Checked)
@@ -432,6 +444,27 @@ namespace MSU_Launcher
         {
             txtQUSB2SNESPath.Enabled = checkboxQUsb2SnesPath.Checked;
             btnBrowseQusb2Snes.Enabled = checkboxQUsb2SnesPath.Checked;
+        }
+
+        private void checkboxOverwrite_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkboxOverwrite.Checked && Settings1.Default.OverwriteSetting == false)
+            {
+                string warningmessage = "WARNING! Enabling this option allows this program to overwrite your rom game files without additional confirmation or warning." +
+                    @"(eg. C:\msu\track.sfc is your old game file, it will be deleted and replaced with the new rom selected and unrecoverable." +
+                    @"Please click OK to accept, or cancel to disable this option";
+               
+                if (MessageBox.Show(warningmessage, "WARNING!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                {
+                    checkboxOverwrite.Checked = false;
+                    Settings1.Default.OverwriteSetting = false;
+                }
+
+            }
+            if (checkboxOverwrite.Checked == false)
+            {
+                Settings1.Default.OverwriteSetting = false;
+            }
         }
     }
 }

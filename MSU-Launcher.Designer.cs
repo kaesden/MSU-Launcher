@@ -57,8 +57,8 @@ namespace MSU_Launcher
             this.checkboxQUsb2SnesPath = new System.Windows.Forms.CheckBox();
             this.btnLaunch = new System.Windows.Forms.Button();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.checkBoxExitAfterLaunch = new System.Windows.Forms.CheckBox();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
@@ -215,7 +215,7 @@ namespace MSU_Launcher
             this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveSettings.Location = new System.Drawing.Point(384, 169);
             this.btnSaveSettings.Name = "btnSaveSettings";
-            this.btnSaveSettings.Size = new System.Drawing.Size(86, 23);
+            this.btnSaveSettings.Size = new System.Drawing.Size(83, 23);
             this.btnSaveSettings.TabIndex = 23;
             this.btnSaveSettings.Text = "&Save Settings";
             this.btnSaveSettings.UseVisualStyleBackColor = true;
@@ -259,7 +259,7 @@ namespace MSU_Launcher
             this.lstboxSFC.FormattingEnabled = true;
             this.lstboxSFC.Location = new System.Drawing.Point(3, 22);
             this.lstboxSFC.Name = "lstboxSFC";
-            this.lstboxSFC.Size = new System.Drawing.Size(468, 134);
+            this.lstboxSFC.Size = new System.Drawing.Size(472, 134);
             this.lstboxSFC.TabIndex = 19;
             this.lstboxSFC.SelectedValueChanged += new System.EventHandler(this.lstboxSFC_SelectedValueChanged);
             // 
@@ -287,12 +287,13 @@ namespace MSU_Launcher
             // 
             this.checkboxOverwrite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkboxOverwrite.AutoSize = true;
-            this.checkboxOverwrite.Location = new System.Drawing.Point(316, 5);
+            this.checkboxOverwrite.Location = new System.Drawing.Point(320, 5);
             this.checkboxOverwrite.Name = "checkboxOverwrite";
             this.checkboxOverwrite.Size = new System.Drawing.Size(154, 17);
             this.checkboxOverwrite.TabIndex = 17;
             this.checkboxOverwrite.Text = "&Overwrite existing game file";
             this.checkboxOverwrite.UseVisualStyleBackColor = true;
+            this.checkboxOverwrite.CheckedChanged += new System.EventHandler(this.checkboxOverwrite_CheckedChanged);
             // 
             // checkboxRandomMSU
             // 
@@ -365,14 +366,6 @@ namespace MSU_Launcher
             this.splitContainer.SplitterWidth = 2;
             this.splitContainer.TabIndex = 24;
             // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 361);
-            this.splitter1.TabIndex = 25;
-            this.splitter1.TabStop = false;
-            // 
             // checkBoxExitAfterLaunch
             // 
             this.checkBoxExitAfterLaunch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -383,6 +376,14 @@ namespace MSU_Launcher
             this.checkBoxExitAfterLaunch.TabIndex = 24;
             this.checkBoxExitAfterLaunch.Text = "E&xit after Launch";
             this.checkBoxExitAfterLaunch.UseVisualStyleBackColor = true;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 361);
+            this.splitter1.TabIndex = 25;
+            this.splitter1.TabStop = false;
             // 
             // MSULauncherForm
             // 
