@@ -71,7 +71,7 @@
     <ApplicationIcon>MSU_Launcher_Logo-Large.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>MSU Launcher_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
