@@ -22,6 +22,7 @@ namespace MSU_Launcher
         {
             InitializeComponent();
             AddVersionNumber();
+            CheckForUpdates();
         }
 
         private void AddVersionNumber()
@@ -33,7 +34,7 @@ namespace MSU_Launcher
 
         private async Task CheckForUpdates()
         {
-            using(var manager = UpdateManager.GitHubUpdateManager(@"https://github.com/kaesden/MSU-Launcher"))
+            using(var manager = UpdateManager.GitHubUpdateManager(@"https://github.com/kaesden/MSU-Launcher/releases/latest"))
             {
                 await manager.Result.UpdateApp();
             }
