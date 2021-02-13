@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
-using Squirrel;
 
 namespace MSU_Launcher
 {
@@ -22,7 +21,6 @@ namespace MSU_Launcher
         {
             InitializeComponent();
             AddVersionNumber();
-            CheckForUpdates();
         }
 
         private void AddVersionNumber()
@@ -32,13 +30,6 @@ namespace MSU_Launcher
             this.Text += $" v.{ versionInfo.FileVersion }";
         }
 
-        private async Task CheckForUpdates()
-        {
-            using(var manager = UpdateManager.GitHubUpdateManager(@"https://github.com/kaesden/MSU-Launcher/releases/latest"))
-            {
-                await manager.Result.UpdateApp();
-            }
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
