@@ -151,10 +151,11 @@
     <Content Include="mimic-logo.ico" />
     <Content Include="MSU-Launcher-Logo.ico" />
     <Content Include="MSU_Launcher_Logo-Large.ico" />
+    <Content Include="Resources\Main.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

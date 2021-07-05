@@ -14,8 +14,12 @@ namespace MSU_Launcher
 {
     public partial class MSULauncherForm : Form
     {
-        string[] msudirs;
-        string[] sfcfiles;
+        private string[] msudirs;
+        private string[] sfcfiles;
+        private string msuShufflerPath;
+        private enum MSUShuffleModes { Off, Default, Basic, Full, Single };
+        private MSUShuffleModes msuShuffleMode = MSUShuffleModes.Off;
+        private string msuShuffleCommand = "";
 
         public MSULauncherForm()
         {
@@ -34,6 +38,10 @@ namespace MSU_Launcher
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadSettings();
+            if(checkboxRandomMSU.Checked && radMSUSingle.Checked == false)
+            {
+                lstboxMSU.Enabled = false;
+            }
             ValidatePaths();
 
         }
@@ -59,22 +67,65 @@ namespace MSU_Launcher
         {
             msudirs = null;
             msudirs = Directory.GetDirectories(txtMSUPath.Text);
+            msuShufflerPath = null;
             lstboxMSU.Items.Clear();
+            bool foundShuffler = false;
+            bool found = false;
+            groupboxShuffler.Enabled = false;
             foreach (string msudir in msudirs)
             {
+                foreach (string file in Directory.GetFiles(msudir,"Main.py",SearchOption.TopDirectoryOnly))
+                {
+                    found = true;
+                    msuShufflerPath = Path.GetDirectoryName(file);
+                    break;
+                }
+                if (found)
+                {
+                    found = false;
+                    foundShuffler = true;
+                    groupboxShuffler.Enabled = true;
+                    continue;
+                }
                 lstboxMSU.Items.Add(Path.GetFileName(msudir));
+            }
+            //MessageBox.Show(Application.StartupPath.ToString());
+            if (!foundShuffler)
+            {
+                //create directory for shuffler
+                int appendNumber = 0;
+                while (Directory.Exists(txtMSUPath.Text + @"\Shuffler" +(appendNumber < 1 ? "" : appendNumber.ToString())))
+                {
+                    appendNumber++;
+                }
+                msuShufflerPath = txtMSUPath.Text + @"\Shuffler" + (appendNumber < 1 ? "" : appendNumber.ToString());
+                Directory.CreateDirectory(msuShufflerPath);
+
+                //copy main.py from project to new shuffler directory
+                if (File.Exists(msuShufflerPath + @"main.py"))
+                {
+                    DialogResult result = MessageBox.Show("Shuffler script found! Would you like to replace this with the included version?", "Warning", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        File.Copy(Application.StartupPath + @"\resources\main.py", msuShufflerPath + @"\main.py", true);
+                    }
+                }
+                else
+                {
+                    File.Copy(Application.StartupPath + @"\resources\main.py", msuShufflerPath + @"\main.py");
+                }
             }
         }
 
         void LoadSFCList()
         {
             sfcfiles = null;
-            sfcfiles = Directory.GetFiles(txtDownloadsPath.Text, "*.sfc", SearchOption.TopDirectoryOnly);
+            sfcfiles = Directory.GetFiles(txtDownloadsPath.Text, "*.sfc", SearchOption.TopDirectoryOnly).OrderByDescending(d => new FileInfo(d).CreationTime).ToArray();
             lstboxSFC.Items.Clear();
             foreach (string sfcfile in sfcfiles)
             {
                 FileInfo fi = new FileInfo(sfcfile);
-                lstboxSFC.Items.Add(Path.GetFileName(sfcfile) + " / " + fi.CreationTime);
+                lstboxSFC.Items.Add(Path.GetFileName(sfcfile) + " | " + fi.CreationTime);
             }
             if (lstboxSFC.Items.Count == 1)
             {
@@ -85,6 +136,7 @@ namespace MSU_Launcher
         void ClearMSUList()
         {
             msudirs = null;
+            msuShufflerPath = null;
             lstboxMSU.Items.Clear();
         }
 
@@ -202,7 +254,9 @@ namespace MSU_Launcher
             if (isValid)
             {
                 errorProvider.Clear();
-                if ((lstboxMSU.SelectedIndex >= 0 || checkboxRandomMSU.Checked) && lstboxSFC.SelectedIndex >= 0)
+                if ((lstboxMSU.SelectedIndex >= 0 || checkboxRandomMSU.Checked ||
+                    (msuShuffleMode == MSUShuffleModes.Default || msuShuffleMode == MSUShuffleModes.Basic || msuShuffleMode == MSUShuffleModes.Full)) 
+                    && lstboxSFC.SelectedIndex >= 0)
                     btnLaunch.Enabled = true;
                 else
                     btnLaunch.Enabled = false;
@@ -244,7 +298,7 @@ namespace MSU_Launcher
         {
             OpenFileDialog fd = new OpenFileDialog();
             fd.InitialDirectory = Path.GetDirectoryName(txtLiveSplitPath.Text);
-            fd.Filter = "LiveSplit Layout or Split file|*.ls*";
+            fd.Filter = "LiveSplit Layout or Split file|*.ls*|LiveSplit Executable|livesplit.exe";
             if (fd.ShowDialog() == DialogResult.OK)
             {
                 txtLiveSplitPath.Text = fd.FileName;
@@ -333,7 +387,7 @@ namespace MSU_Launcher
 
             //MSU Folder name
             string MSUPath;
-            if (checkboxRandomMSU.Checked)
+            if (checkboxRandomMSU.Checked && msuShuffleMode == MSUShuffleModes.Off)
             {
                 Random rnd = new Random();
                 int r = rnd.Next(0, lstboxMSU.Items.Count);
@@ -341,7 +395,25 @@ namespace MSU_Launcher
             }
             else
             {
-                MSUPath = msudirs[lstboxMSU.SelectedIndex];
+                switch (msuShuffleMode)
+                {
+                    case MSUShuffleModes.Off:
+                        MSUPath = msudirs[lstboxMSU.SelectedIndex];
+                        break;
+                    case MSUShuffleModes.Default:
+                    case MSUShuffleModes.Basic:
+                    case MSUShuffleModes.Full:
+                        MSUPath = msuShufflerPath;
+                        LaunchMSUShuffle();
+                        break;
+                    case MSUShuffleModes.Single:
+                        MSUPath = msuShufflerPath;
+                        LaunchMSUShuffle();
+                        break;
+                    default:
+                        MSUPath = msudirs[lstboxMSU.SelectedIndex];
+                        break;
+                }
             }
             string SFCPath;
             string SFCDestination;
@@ -402,6 +474,30 @@ namespace MSU_Launcher
             }
         }
 
+        private void LaunchMSUShuffle()
+        {
+            ProcessStartInfo start = new ProcessStartInfo("python.exe");
+            start.Arguments = msuShuffleCommand;
+            start.UseShellExecute = false;
+            start.WorkingDirectory = msuShufflerPath;
+            using (Process process = new Process())
+            {
+                process.StartInfo = start;
+                try
+                {
+                    process.Start();
+                    while (!process.HasExited) { }
+                    process.Dispose();
+                }
+                catch
+                {
+                    MessageBox.Show("Python not found! Please make sure Python is installed correctly to use MSU Shuffle modes.");
+                    radMSUOff.Checked = true;
+                    groupboxShuffler.Enabled = false;
+                }
+            }
+        }
+
         private void lstboxMSU_SelectedValueChanged(object sender, EventArgs e)
         {
             ValidatePaths();
@@ -424,12 +520,17 @@ namespace MSU_Launcher
             if (checkboxRandomMSU.Checked && lstboxMSU.Items.Count > 0)
             {
                 lstboxMSU.Enabled = false;
+                lstboxMSU.SelectedIndex = -1;
             }
             else
             {
                 lstboxMSU.Enabled = true;
             }
             ValidatePaths();
+            if (radMSUSingle.Checked)
+            {
+                SetSingleShuffleCommand();
+            }
         }
 
         private void checkboxQUsb2SnesPath_CheckedChanged(object sender, EventArgs e)
@@ -457,6 +558,79 @@ namespace MSU_Launcher
             {
                 Settings1.Default.OverwriteSetting = false;
             }
+        }
+
+        private void radMSUOff_CheckedChanged(object sender, EventArgs e)
+        {
+            msuShuffleMode = MSUShuffleModes.Off;
+            lstboxMSU.Enabled = !checkboxRandomMSU.Checked;
+            checkboxRandomMSU.Enabled = true;
+            ValidatePaths();
+        }
+
+        private void radMSUDefault_CheckedChanged(object sender, EventArgs e)
+        {
+            msuShuffleMode = MSUShuffleModes.Default;
+            msuShuffleCommand = $@"{ msuShufflerPath }\main.py";
+            checkboxRandomMSU.Checked = false;
+            checkboxRandomMSU.Enabled = false;
+            lstboxMSU.Enabled = false;
+            lstboxMSU.SelectedIndex = -1;
+            ValidatePaths();
+
+        }
+
+        private void radMSUBasic_CheckedChanged(object sender, EventArgs e)
+        {
+            msuShuffleMode = MSUShuffleModes.Basic;
+            msuShuffleCommand = $@"{ msuShufflerPath }\main.py --basicshuffle";
+            checkboxRandomMSU.Enabled = false;
+            checkboxRandomMSU.Checked = false;
+            lstboxMSU.Enabled = false;
+            lstboxMSU.SelectedIndex = -1;
+            ValidatePaths();
+        }
+
+        private void radMSUFull_CheckedChanged(object sender, EventArgs e)
+        {
+            msuShuffleMode = MSUShuffleModes.Full;
+            msuShuffleCommand = $@"{ msuShufflerPath }\main.py --fullshuffle";
+            checkboxRandomMSU.Enabled = false;
+            checkboxRandomMSU.Checked = false;
+            lstboxMSU.Enabled = false;
+            lstboxMSU.SelectedIndex = -1;
+            ValidatePaths();
+        }
+
+        private void radMSUSingle_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            msuShuffleMode = MSUShuffleModes.Single;
+            lstboxMSU.Enabled = !checkboxRandomMSU.Checked;
+            checkboxRandomMSU.Enabled = true;
+            SetSingleShuffleCommand();
+            ValidatePaths();
+        }
+
+        private void SetSingleShuffleCommand()
+        {
+            Random rnd = new Random();
+            int r = rnd.Next(0, lstboxMSU.Items.Count);
+            if (lstboxMSU.SelectedIndex >= 0)
+                msuShuffleCommand = $@"{ msuShufflerPath }\main.py --singleshuffle ../{ lstboxMSU.SelectedItem }";
+            else if (checkboxRandomMSU.Checked)
+                msuShuffleCommand = $@"{ msuShufflerPath }\main.py --singleshuffle ../{ lstboxMSU.Items[r] }";
+            else
+                msuShuffleCommand = $@"{ msuShufflerPath }\main.py";
+        }
+
+        private void lstboxMSU_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(radMSUSingle.Checked && lstboxMSU.SelectedIndex >=0)
+            {
+                SetSingleShuffleCommand();
+            }
+
         }
     }
 }
